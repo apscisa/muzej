@@ -5,6 +5,7 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import me.fit.IPLog;
 import me.fit.Korisnik;
 import java.util.List;
 
@@ -14,13 +15,12 @@ public class KorisnikService {
 	@Inject private EntityManager em;
 	
 	@Transactional
-	public Korisnik createKorisnik(Korisnik k) {
+	public Korisnik createKorisnik(Korisnik k, IPLog iplog) {
 		return em.merge(k);
 	}
 	
-	
 	@Transactional
-    public List<Korisnik> getAllKorisnici(){
+    public List<Korisnik> getAllKorisnike(){
         return em.createNamedQuery(Korisnik.GET_ALL_KORISNIKE, Korisnik.class).getResultList();
     }
 	
